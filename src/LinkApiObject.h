@@ -19,11 +19,16 @@
 enum RespCode {
     RespCodeOK = 200,
     RespCodeUserCancel = 100,
+    RespCodeRequestFail = 103,
 };
 
 @interface BaseReq : NSObject
 
-@property (nonatomic, copy) NSString* appId;
+
+/**
+ 每个 req 都应指明 Link 应用的 appBundleId
+ */
+@property (nonatomic, copy) NSString* linkAppId;
 
 @end
 

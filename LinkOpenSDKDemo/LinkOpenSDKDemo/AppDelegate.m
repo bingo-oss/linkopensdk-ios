@@ -31,7 +31,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [LinkApi registerClient:SSOV3_CLIENT_ID];
     return YES;
 }
 
@@ -71,8 +71,10 @@
                 }
                 
             }];
-        } else {
+        } else if (resp.resultCode == RespCodeUserCancel) {
             [[DemoUtil sharedInstance] alert:@"Error" body:@"User cancel"];
+        } else {
+            [[DemoUtil sharedInstance] alert:resp.error body:resp.errorDescription];
         }
         
     }

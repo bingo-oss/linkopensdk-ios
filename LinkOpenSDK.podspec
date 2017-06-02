@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LinkOpenSDK"
-  s.version      = "0.1.0"
+  s.version      = "0.2.0"
   s.summary      = "OpenSDK for Link."
 
   s.ios.deployment_target = '7.0'

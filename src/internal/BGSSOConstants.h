@@ -56,8 +56,12 @@ static NSString* const kOauth2ResponseKeyError = @"error";
 static NSString* const kOauth2ResponseKeyErrorDescription = @"error_description";
 
 // Link third-party login
-static NSString* const kLinkAppId = @"com.bingosoft.linkonline";
 static NSString* const kURLSchemeCallbackHost = @"oauth";
+static NSString* const kURLSchemeQueryParamStatusCode = @"statusCode";
 static NSString* const kURLSchemeQueryParamNameCode = @"code";
 static NSString* const kURLSchemeQueryParamNameError = @"error";
 static NSString* const kURLSchemeQueryParamNameErrorDes = @"error_description";
+
+static NSString* const kLinkStatusCodeOK = @"200";
+static NSString* const kLinkStatusCodeUserCancel = @"100";
+static NSString* const kLinkStatusCodeRequestFail = @"103";

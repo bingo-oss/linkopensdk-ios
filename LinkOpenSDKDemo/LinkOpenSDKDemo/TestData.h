@@ -22,6 +22,8 @@
 //#define SSOV3_USERNAME @"057270@bingosoft"
 //#define SSOV3_PASSWORD @"111111"
 
+#define LINK_APP_ID @"com.bingosoft.linkonline"
+
 #define SSOV3_URL @"https://10.201.78.113:8802"
 #define SSOV3_CLIENT_ID @"test_client_login_2"
 #define SSOV3_CLIENT_SECRET @"IHRlc3RfY2xpZW50X2xvZ2lu"

@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		026BDF511EE14F70009BDFE4 /* TestData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestData.h; sourceTree = "<group>"; };
 		029D74A41ECE9C5A00210DD4 /* LinkOpenSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkOpenSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029D74A81ECE9C5A00210DD4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		029D74AA1ECE9C5A00210DD4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 				029D74AB1ECE9C5A00210DD4 /* AppDelegate.m */,
 				029D74AD1ECE9C5A00210DD4 /* ViewController.h */,
 				029D74AE1ECE9C5A00210DD4 /* ViewController.m */,
+				026BDF511EE14F70009BDFE4 /* TestData.h */,
 				029D74C91ECEB8A500210DD4 /* DemoUtil.h */,
 				029D74CA1ECEB8A500210DD4 /* DemoUtil.m */,
 				029D74B01ECE9C5A00210DD4 /* Main.storyboard */,

@@ -32,12 +32,12 @@
 
 
 - (IBAction)doLogin:(id)sender {
-    if (![LinkApi isLinkInstalled]) {
+    if (![LinkApi isLinkInstalled:LINK_APP_ID]) {
         [[DemoUtil sharedInstance] alert:@"Error" body:@"Must install link first"];
         return;
     }
     AuthReq* req = [AuthReq new];
-    req.appId = SSOV3_CLIENT_ID;
+    req.linkAppId = LINK_APP_ID;
     [LinkApi sendReq:req];
 }
 

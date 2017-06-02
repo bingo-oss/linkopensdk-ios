@@ -18,6 +18,7 @@
 #import "BGSSOConstants.h"
 #import "BGUtil.h"
 
+static NSString* gClientId;
 
 @interface LinkApi ()
 
@@ -25,8 +26,9 @@
 
 @implementation LinkApi
 
-+(BOOL) registerApp:(NSString *)appid {
++(BOOL) registerClient:(NSString *)clientId {
     // Nothing to do yet.
+    gClientId = [clientId copy];
     return YES;
 }
 
@@ -35,14 +37,15 @@
         
         NSDictionary* params = [BGUtil parseParams:url];
         
-        NSString* code = [params objectForKey:kURLSchemeQueryParamNameCode];
         
+        NSString* statusCode = [params objectForKey:kURLSchemeQueryParamStatusCode];
+
         AuthResp* resp = [AuthResp new];
-        if (code) {
-            resp.authCode = code;
+        if ([statusCode isEqualToString:kLinkStatusCodeOK]) {
+            resp.authCode = [params objectForKey:kURLSchemeQueryParamNameCode];
             resp.resultCode = RespCodeOK;
         } else {
-            resp.resultCode = RespCodeUserCancel;
+            resp.resultCode = [statusCode isEqualToString:kLinkStatusCodeUserCancel] ? RespCodeUserCancel : RespCodeRequestFail;
             resp.error = [params objectForKey:kURLSchemeQueryParamNameError];
             resp.errorDescription = [params objectForKey:kURLSchemeQueryParamNameErrorDes];
         }
@@ -54,15 +57,15 @@
 
 }
 
-+ (BOOL) isLinkInstalled {
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@://oauth", kLinkAppId]]];
++ (BOOL) isLinkInstalled:(NSString*) linkAppId {
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@://oauth", linkAppId]]];
 }
 
 + (void) sendReq:(BaseReq*)req {
     if ([req isKindOfClass:[AuthReq class]]) {
         // Handle Auth
         NSString* appId = [[NSBundle mainBundle] bundleIdentifier];
-        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://oauth?app_id=%@&client_id=%@", kLinkAppId, appId, req.appId]];
+        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://oauth?app_id=%@&client_id=%@", req.linkAppId, appId, gClientId]];
         if (![[UIApplication sharedApplication] canOpenURL:url]) {
             return;
         }

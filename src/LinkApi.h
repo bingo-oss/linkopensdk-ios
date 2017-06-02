@@ -21,22 +21,67 @@
 
 @optional
 
+
+/**
+ Link 主动和应用发起请求。
+
+ @param req 请求对象
+ */
 - (void) onReq:(BaseReq*)req;
 
+
+/**
+ 应用向 Link 发起请求，Link 处理之后会在这里返回结果。
+
+ @param resp 结果对象
+ */
 - (void) onResp:(BaseResp*)resp;
 
 @end
 
 @interface LinkApi : NSObject
 
-+(BOOL) registerApp:(NSString *)appid;
 
+/**
+ 向 Link 应用注册我们的 clientID。应全局调用一次。
+
+ @param clientId 应用在 SSO 注册的 clientID
+ @return 成功返回 YES，否则 NO
+ */
++(BOOL) registerClient:(NSString *)clientId;
+
+
+/**
+ 在你 appDelegate 的 application:handleOpenURL: 方法里将 url 交给 SDK 处理。
+
+ @param url 待处理的 url 对象
+ @param delegate 委托处理对象
+ @return 处理成功返回 YES，否则 NO
+ */
 + (BOOL) handleOpenURL:(NSURL*)url delegate:(id<LinkApiDelegate>)delegate;
 
-+ (BOOL) isLinkInstalled;
 
+/**
+ 查询 Link 应用是否已经安装
+
+ @return 如果 Link 已经安装，返回 YES，否则 NO
+ */
++ (BOOL) isLinkInstalled:(NSString*) linkAppId;
+
+
+/**
+ 向 Link 应用发起请求。
+
+ @param req 请求对象
+ */
 + (void) sendReq:(BaseReq*)req;
 
+
+/**
+ 向 Link 应用发送响应。
+
+ @param resp 响应对象
+ */
 + (void) sendResp:(BaseResp*)resp;
 
 @end
